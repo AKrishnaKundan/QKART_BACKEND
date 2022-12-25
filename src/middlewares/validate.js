@@ -16,7 +16,7 @@ const validate = (schema) => (req, res, next) => {
       )
     );
   }
-
+  
   // cherry-pick from the input schema ["params", "query", "body"] fields
   const validSchema = pick(schema, ["params", "query", "body"]);
 
@@ -35,7 +35,6 @@ const validate = (schema) => (req, res, next) => {
       .join(", ");
     return next(new ApiError(httpStatus.BAD_REQUEST, errorMessage));
   }
-
   // Update validated fields in request with returned value
   Object.assign(req, value);
   return next();
