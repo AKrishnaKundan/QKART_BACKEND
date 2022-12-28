@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { findConfigFile } = require("typescript");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 // NOTE - "validator" external library and not the custom middleware at src/middlewares/validate.js
 const validator = require("validator");
 const { User } = require(".");
