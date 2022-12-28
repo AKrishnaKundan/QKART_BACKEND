@@ -1,5 +1,6 @@
 const httpStatus = require("http-status");
 const userService = require("./user.service");
+const {User} = require("../models");
 const ApiError = require("../utils/ApiError");
 
 /**
@@ -15,6 +16,14 @@ const ApiError = require("../utils/ApiError");
  * @returns {Promise<User>}
  */
 const loginUserWithEmailAndPassword = async (email, password) => {
+  const user = await userService.getUserByEmail(email);
+  if (!user){
+    throw new ApiError(httpStatus.UNAUTHORIZED, "Email is not registered");
+  }
+  const match = await user.isPasswordMatch(password, user.password);
+  if (!match)
+    throw new ApiError(httpStatus.UNAUTHORIZED, "Wrong Password"); 
+  return user;
 };
 
 module.exports = {

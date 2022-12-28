@@ -3,7 +3,7 @@ const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
 const { userService } = require("../services");
 const {getUserById,getUserByEmail,createUser} = require("../services/user.service.js");
-const { createWatchProgram } = require("typescript");
+const { generateAuthTokens } = require("../services/token.service");
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement getUser() function
 /**
@@ -50,7 +50,8 @@ const getUser = catchAsync(async (req, res) => {
     if(!user) {
       throw new ApiError(httpStatus.NOT_FOUND, "User not found");
     }
-    res.status(200).json(user);
+    if (user.email !== req.user.email) throw new ApiError(httpStatus.FORBIDDEN, "Accessing data of another user is not allowed"); 
+    else res.status(200).json(user);
 
 });
 

@@ -1,10 +1,7 @@
-
 const {User} = require("../models");
 const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
 const bcrypt = require("bcryptjs");
-const { createImportSpecifier } = require("typescript");
-const { default: isEmail } = require("validator/lib/isEmail");
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement getUserById(id)
 /**
@@ -27,13 +24,8 @@ const getUserById = async(id)=>{
  */
 
 const getUserByEmail = async(email)=>{
-    try{
-        const response = await User.findOne({"email":email});
-        return response;
-    }
-    catch(err){
-        return err;
-    }
+    const response = await User.findOne({email});
+    return response;  
 }
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement createUser(user)
@@ -64,9 +56,16 @@ const createUser = async(user)=>{
     if(isEmailPresent)
         throw new ApiError(httpStatus.OK, "Email already taken");
 
-    const response = await User.create(user);
-    return response;
-    
+    const hashedPassword = await hashPassword(user.password);
+    const response = await User.create({...user, password: hashedPassword});
+    return response;   
 }
+
+const hashPassword = async (password) => {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+    return hashedPassword;
+};
+   
 
 module.exports = {getUserById,getUserByEmail,createUser};

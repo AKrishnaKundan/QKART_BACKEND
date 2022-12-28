@@ -4,6 +4,7 @@ const { findConfigFile } = require("typescript");
 const validator = require("validator");
 const { User } = require(".");
 const config = require("../config/config");
+const bcrypt = require("bcrypt");
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Complete userSchema, a Mongoose schema for "users" collection
 const userSchema = mongoose.Schema(
@@ -76,10 +77,11 @@ userSchema.statics.isEmailTaken = async function (email) {
  * @param {string} password
  * @returns {Promise<boolean>}
  */
-userSchema.methods.isPasswordMatch = async function (password) {
+userSchema.methods.isPasswordMatch = async function (password, userPassword) {
+  const isPasswordValid = await bcrypt.compare(password, userPassword);
+  if (!isPasswordValid) return false;
+  return true;
 };
-
-
 
 /*
  * Create a Mongoose model out of userSchema and export the model as "User"

@@ -9,10 +9,10 @@ const { password } = require("./custom.validation");
  * - "name": string
  */
 const register = {
-  params : Joi.object().keys({
-    email : Joi.string().email(),
-    password : Joi.string().custom(password),
-    name : Joi.string()
+  body : Joi.object().keys({
+    email : Joi.string().required().email(),
+    password : Joi.string().required().custom(password),
+    name : Joi.string().required()
   })
 };
 
@@ -22,9 +22,9 @@ const register = {
  * - "password": string and satisifes the custom password structure defined in "src/validations/custom.validation.js"
  */
 const login = {
-  params : Joi.object().keys({
-    email : Joi.string().email().required(),
-    password : Joi.string().custom(password).required(),
+  body : Joi.object().keys({
+    email : Joi.string().required().email(),
+    password : Joi.string().required().custom(password),
   })
 };
 

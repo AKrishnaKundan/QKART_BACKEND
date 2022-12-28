@@ -1,0 +1,14 @@
+POST http://3.108.146.60:8082/v1/auth/register
+Content-Type: application/json
+
+{
+    "name": "a-users",
+    "email": "akrishnakundn-users@gmail.com",
+    "password": "auser123"
+}
+
+###
+
+GET http://3.108.146.60:8082/v1/users/63aa84a9b2326a394d774d50
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2FhODQzNGIyMzI2YTM5NGQ3NzRkNDciLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcyMTMzNzQ4LCJpYXQiOjE2NzIxMTkzNDguNDgyfQ.xGH2H7V5NqC7qDDPTd8s7f97zqmaj--XA1245uFDzM4
+
