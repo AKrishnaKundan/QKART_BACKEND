@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const { findConfigFile } = require("typescript");
+const bcrypt = require("bcrypt");
 // NOTE - "validator" external library and not the custom middleware at src/middlewares/validate.js
 const validator = require("validator");
 const { User } = require(".");
 const config = require("../config/config");
-const bcrypt = require("bcrypt");
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Complete userSchema, a Mongoose schema for "users" collection
 const userSchema = mongoose.Schema(
