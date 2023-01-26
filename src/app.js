@@ -9,8 +9,6 @@ const { jwtStrategy } = require("./config/passport");
 const helmet = require("helmet");
 const passport = require("passport");
 
-
-
 const app = express();
 passport.use("jwt", jwtStrategy);
 
