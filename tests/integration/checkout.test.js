@@ -1,8 +1,7 @@
 const request = require("supertest");
-const httpStatus = require("http-status");
 const app = require("../../src/app");
 const setupTestDB = require("../utils/setupTestDB");
-const { Cart, User } = require("../../src/models");
+const { Cart } = require("../../src/models");
 const { userOne, userTwo, insertUsers } = require("../fixtures/user.fixture");
 const {
   cartWithProductsUserOne,
@@ -15,8 +14,6 @@ const {
   userTwoAccessToken,
 } = require("../fixtures/token.fixture");
 const config = require("../config/config");
-
-const ApiError = require("../../src/utils/ApiError");
 
 // Setup test Mongo database, qkart-test
 setupTestDB();

@@ -10,7 +10,6 @@ const {
 const ApiError = require("../../src/utils/ApiError");
 const mockingoose = require("mockingoose").default;
 const config = require("../config/config");
-const { BAD_REQUEST } = require("http-status");
 
 // Tests related to the Cart layer
 describe("Cart test", () => {
