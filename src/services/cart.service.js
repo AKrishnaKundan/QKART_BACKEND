@@ -1,8 +1,9 @@
 const httpStatus = require("http-status");
-const {Cart, Product } = require("../models");
+const {Cart, Product, User } = require("../models");
 const ApiError = require("../utils/ApiError");
 const config = require("../config/config");
 const { createUser } = require("./user.service");
+const { userOne } = require("../../tests/fixtures/user.fixture");
 
 // TODO: CRIO_TASK_MODULE_CART - Implement the Cart service methods
 
@@ -116,7 +117,7 @@ const addProductToCart = async (user, productId, quantity) => {
  *
  * - If product to add not in "products" collection in MongoDB, throw ApiError with
  * --- status code  - 400 BAD REQUEST
- * -*-- message - "Product doesn't exist in database"
+ * --- message - "Product doesn't exist in database"
  *
  * - If product to update not in user's cart, throw ApiError with
  * --- status code  - 400 BAD REQUEST
@@ -198,7 +199,7 @@ const deleteProductFromCart = async (user, productId) => {
 
   // If product not in cart, throw error. Otherwise, delete from cart.
   if (productIndex == -1) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Product not in cart. ");
+    throw new ApiError(httpStatus.BAD_REQUEST, "Product not in cart.");
   } else {
     cart.cartItems.splice(productIndex, 1);
   }
@@ -207,9 +208,59 @@ const deleteProductFromCart = async (user, productId) => {
 };
 
 
+// TODO: CRIO_TASK_MODULE_TEST - Implement checkout function
+/**
+ * Checkout a users cart.
+ * On success, users cart must have no products.
+ *
+ * @param {User} user
+ * @returns {Promise}
+ * @throws {ApiError} when cart is invalid
+ */
+const checkout = async (user) => {
+  let cart = await Cart.findOne({ email: user.email }); 
+
+  if (cart == null) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "User does not have a cart");
+  }
+  if (cart.cartItems.length === 0){
+    throw new ApiError(httpStatus.BAD_REQUEST, "Cart does not have any products");
+  }
+
+  if ( !(await user.hasSetNonDefaultAddress()) )
+  {   
+    throw new ApiError(httpStatus.BAD_REQUEST, "User does not have an address other than the default address");
+  }
+
+  let cartTotal = 0;
+  let cartItems = cart.cartItems;
+
+  for (let i=0; i<cartItems.length; i++){
+    let quantity = cartItems[i].quantity;
+    let cost = cartItems[i].product.cost;
+
+    cartTotal += (quantity*cost);
+    if (user.walletMoney < cartTotal)
+      throw new ApiError(httpStatus.BAD_REQUEST, "Insufficient Wallet Balance");
+    
+    // updating the wallet money after checkout
+    let walletBalance = (user.walletMoney-cartTotal);
+    user.walletMoney = walletBalance;
+    await user.save();
+
+    //Removing all the cart items.
+    cart.cartItems = [];
+    await cart.save();
+
+    return user;
+  }
+ 
+};
+
 module.exports = {
   getCartByUser,
   addProductToCart,
   updateProductInCart,
   deleteProductFromCart,
+  checkout,
 };

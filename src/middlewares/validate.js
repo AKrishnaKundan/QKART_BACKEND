@@ -39,6 +39,7 @@ const validate = (schema) => (req, res, next) => {
 
   // Update validated fields in request with returned value
   Object.assign(req, value);
+
   return next();
 };
 

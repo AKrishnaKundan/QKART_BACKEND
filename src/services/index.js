@@ -1,8 +1,5 @@
-module.exports = 
-{
-    userService : require("./user.service"),
-    authService : require("./auth.service"),
-    tokenService : require("./token.service"),
-    productService : require("./product.service"),
-    cartService : require("./cart.service")
-};
+module.exports.userService = require("./user.service");
+module.exports.authService = require("./auth.service");
+module.exports.tokenService = require("./token.service");
+module.exports.productService = require("./product.service");
+module.exports.cartService = require("./cart.service");

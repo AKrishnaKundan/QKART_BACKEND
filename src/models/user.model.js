@@ -52,7 +52,6 @@ const userSchema = mongoose.Schema(
   }
 );
 
-// TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement the isEmailTaken() static method
 /**
  * Check if email is taken
  * @param {string} email - The user's email
@@ -81,6 +80,17 @@ userSchema.methods.isPasswordMatch = async function (password, userPassword) {
   const isPasswordValid = await bcrypt.compare(password, userPassword);
   if (!isPasswordValid) return false;
   return true;
+}
+/**
+ * Check if user have set an address other than the default address
+ * - should return true if user has set an address other than default address
+ * - should return false if user's address is the default address
+ *
+ * @returns {Promise<boolean>}
+ */
+userSchema.methods.hasSetNonDefaultAddress = async function () {
+  const user = this;
+  return user.address !== config.default_address;
 };
 
 /*

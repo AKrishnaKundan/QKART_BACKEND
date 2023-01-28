@@ -1,3 +1,4 @@
+
 const express = require("express");
 const validate = require("../../middlewares/validate");
 const userValidation = require("../../validations/user.validation");
@@ -13,3 +14,4 @@ router.get("/:userId", authMiddleware, validateUser, userController.getUser);
 // Need to add a validation for the update address part
 router.put("/:userId", authMiddleware, validateSetAdress, userController.setAddress);
 module.exports = router;
+
