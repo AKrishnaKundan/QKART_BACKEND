@@ -1,8 +1,6 @@
 const httpStatus = require("http-status");
 const catchAsync = require("../utils/catchAsync");
 const { cartService } = require("../services");
-const { Cart } = require("../models");
-const { deleteProductFromCart } = require("../services/cart.service");
 
 /**
  * Fetch the cart details
