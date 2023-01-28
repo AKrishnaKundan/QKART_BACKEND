@@ -69,11 +69,13 @@ const register = catchAsync(async (req, res) => {
  *
  */
 const login = catchAsync(async (req, res) => {
-  const tokens = await generateAuthTokens(user);
+  const { email, password } = req.body;
+  const user = await authService.loginUserWithEmailAndPassword(email, password);
+  const tokens = await tokenService.generateAuthTokens(user);
   res.status(200).json({user, tokens});
 });
 
-export {
+module.exports= {
   register,
   login,
 };
