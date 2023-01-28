@@ -42,7 +42,7 @@ describe("Cart test", () => {
       await expect(res).rejects.toThrow(ApiError);
       await expect(res).rejects.toEqual(
         expect.objectContaining({
-          statusCode: httpStatus.BAD_REQUEST,
+          statusCode: httpStatus.NOT_FOUND,
         })
       );
   

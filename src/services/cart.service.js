@@ -221,7 +221,7 @@ const checkout = async (user) => {
   let cart = await Cart.findOne({ email: user.email }); 
 
   if (cart == null) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "User does not have a cart");
+    throw new ApiError(httpStatus.NOT_FOUND, "User does not have a cart");
   }
   if (cart.cartItems.length === 0){
     throw new ApiError(httpStatus.BAD_REQUEST, "Cart does not have any products");
