@@ -1,3 +1,3 @@
 # Setup file template to upload data to MongoDB Atlas
-mongoimport --uri "mongodb://a-krishnakundan:Ammagaricluster1@ac-ovq5i0u-shard-00-00.uuiyeot.mongodb.net:27017,ac-ovq5i0u-shard-00-01.uuiyeot.mongodb.net:27017,ac-ovq5i0u-shard-00-02.uuiyeot.mongodb.net:27017/?ssl=true&replicaSet=atlas-cgghvs-shard-0&authSource=admin&retryWrites=true&w=majority" --drop --collection users --file data/export_qkart_users.json
-mongoimport --uri "mongodb://a-krishnakundan:Ammagaricluster1@ac-ovq5i0u-shard-00-00.uuiyeot.mongodb.net:27017,ac-ovq5i0u-shard-00-01.uuiyeot.mongodb.net:27017,ac-ovq5i0u-shard-00-02.uuiyeot.mongodb.net:27017/?ssl=true&replicaSet=atlas-cgghvs-shard-0&authSource=admin&retryWrites=true&w=majority" --drop --collection products --file data/export_qkart_products.json
+mongoimport --uri "mongodb+srv://a-krishnakundan:akk-cluster-1@qkart-node.uuiyeot.mongodb.net/qkart?retryWrites=true&w=majority" --drop --collection users --file data/export_qkart_users.json
+mongoimport --uri "mongodb+srv://a-krishnakundan:akk-cluster-1@qkart-node.uuiyeot.mongodb.net/qkart?retryWrites=true&w=majority" --drop --collection products --file data/export_qkart_products.json
