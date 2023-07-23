@@ -1,11 +1,13 @@
 
 # QKart Backend
 
-**Note: 
-• As these projects are developed in Crio.Do program, I was not allowed to make the code repository public. 
-• If you are a recruiter and wants to see my code, message me so that I can provide you access to the code repository.**
-
 QKart is an E-commerce application offering a variety of products for customers to choose from. 
+
+## Links
+
+**Frontend**: https://a-krishnakundan-qkart-backend.netlify.app/
+
+**Backend**: https://qkart-backend-re47.onrender.com
 
 During the course of this project,
 
@@ -66,11 +68,3 @@ JWT Token authentication flow for QKart APIs
 **Frontend:** Netlify
 
 **Backend:** Render
-
-
-
-## Links
-
-**Frontend**: https://a-krishnakundan-qkart-backend.netlify.app/
-
-**Backend**: https://qkart-backend-re47.onrender.com
