@@ -21,7 +21,7 @@ During the course of this project,
 
 • Wrote unit and integration tests to test the implementation
 
-![image](https://github.com/AKrishnaKundan/QKART_BACKEND/assets/93312488/f0fc1781-892d-4631-b37b-538d2b56c75d)
+![image](https://github.com/AKrishnaKundan/QKART_BACKEND/assets/93312488/e88ab658-fd91-4f12-9da1-f0c905899040)
 
 **QKart Layered Architecture**
 
@@ -47,7 +47,7 @@ During the course of this project,
 
 • Implemented password authentication to facilitate register / login flow
 
-![image](https://github.com/AKrishnaKundan/QKART_BACKEND/assets/93312488/0fe00e3d-62c2-4401-a96c-d9ac59c38cfa)
+![image](https://github.com/AKrishnaKundan/QKART_BACKEND/assets/93312488/2568dd5c-b388-4166-9d86-cfea06463ee6)
 
 JWT Token authentication flow for QKart APIs
 
