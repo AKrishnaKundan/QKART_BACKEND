@@ -39,7 +39,7 @@ const jwtVerify = async (payload, done) => {
     
   }
   catch(err){
-    return done(error, false);
+    return done(err, false);
   }
 };
 
